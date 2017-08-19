@@ -9,9 +9,10 @@ if __name__ == '__main__':
     parser.add_argument('--star', action='store_true', help='Use the tsNET* scheme. (Requires PivotMDS layout in ./pivotmds_layouts/ as initialization.)\nNote: Use higher learning rates for larger graphs, for faster convergence.')
     parser.add_argument('--perplexity', '-p', type=float, default=40, help='Perplexity parameter.')
     parser.add_argument('--learning_rate', '-l', type=float, default=50, help='Learning rate (hyper)parameter for optimization.')
-    
+    parser.add_argument('--output', '-o', type=str, help='Save layout to the specified file.')
+
     args = parser.parse_args()
-    
+
     import os
     import time
     import graph_tool.all as gt
@@ -27,7 +28,7 @@ if __name__ == '__main__':
         assert(os.path.isfile('./pivotmds_layouts/{0}.vna'.format(graph_name)))
 
     # Global hyperparameters
-    n = 5000 # Maximum #iterations before giving up
+    n = 5000  # Maximum #iterations before giving up
     momentum = 0.5
     tolerance = 1e-7
     window_size = 40
@@ -91,3 +92,7 @@ if __name__ == '__main__':
 
     # Show layout on the screen
     gt.graph_draw(g, pos=pos)
+
+    if args.output is not None:
+        layout_io.save_vna(args.output, g, Y)
+        print('Saved layout data in "{}"'.format(args.output))
