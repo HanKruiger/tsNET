@@ -26,6 +26,12 @@ optional arguments:
                         Save layout to the specified file.
 ```
 
+Example:
+```bash
+# Read the input graph dwt_72, and save the output in ./output.vna
+./tsnet.py graphs/dwt_72.vna --output ./output.vna
+```
+
 # Dependencies
 
 * `python3`
@@ -34,3 +40,6 @@ optional arguments:
 * [`graph-tool`](https://graph-tool.skewed.de/)
 * [`theano`](http://deeplearning.net/software/theano/)
 * [`scikit-learn`](http://scikit-learn.org/stable/)
+
+# Example
+
